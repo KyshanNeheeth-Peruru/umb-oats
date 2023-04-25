@@ -2,7 +2,7 @@ from django.contrib.admin.helpers import AdminForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.datetime_safe import date
 from UMassSchedulingApplication.settings import DEFAULT_FROM_EMAIL
-from .models import Availability, Tutor, Student, Course
+from .models import Availability, SemesterDates, Tutor, Student, Course
 from django.contrib.auth import login, logout, get_user_model, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -146,15 +146,48 @@ def activate(request, uidb64, token):
 
 @login_required
 def home_view(request):
+<<<<<<< HEAD
     slots = Availability.objects.all().order_by('date')
     return render(request, 'home2_bootstrapped.html', {'slots': slots,'today':today})
+=======
+    current_user=request.user
+    today = date.today()
+    slots = Availability.objects.all().order_by('date')
+    try:
+        student = current_user.student
+        todaysessions = Availability.objects.filter(booked_by=student, date=today).order_by('timeblock')
+        upcsessions = Availability.objects.filter(booked_by=student, date__gt=today).order_by('date')
+    except Student.DoesNotExist:
+        todaysessions = []
+        upcsessions = []
+    
+    try:
+        tutor = current_user.tutor
+        todaytutsessions = Availability.objects.filter(tutor=tutor, date=today).order_by('timeblock')
+        upctutsessions = Availability.objects.filter(tutor=tutor, date__gt=today).order_by('date')
+    except Tutor.DoesNotExist:
+        todaytutsessions = []
+        upctutsessions = []
+    return render(request, 'home_bootstrapped.html', {'slots': slots,'today':today, 'tsessions':todaysessions,'upsessions':upcsessions, 'ttutsessions':todaytutsessions,'uptutsessions':upctutsessions})
+
+>>>>>>> 1344533a620a6d04706615b7f93745e0f550a4c8
 
 @login_required
 def available_slots(request):
     courses = Course.objects.all()
     tutors = Tutor.objects.all()
     slots = Availability.objects.all().order_by('date')
+<<<<<<< HEAD
     return render(request, 'available_slot.html', {'slots': slots,'courses':courses,'tutors':tutors,'today':today})
+=======
+    stud = request.user.student
+    no_show=stud.no_shows
+    ns=True
+    if no_show >2:
+        ns=False
+    return render(request, 'available_slot.html', {'slots': slots,'courses':courses,'tutors':tutors,'ns':ns})
+
+>>>>>>> 1344533a620a6d04706615b7f93745e0f550a4c8
 
 @login_required
 def book_slots(request, availability_id):
@@ -267,3 +300,22 @@ def assign_roles(request):
         users = User.objects.all()
         roles = Group.objects.all()
         return render(request, 'assign_roles.html', {'users': users, 'roles': roles})
+    
+def enter_dates(request):
+    return render(request, 'enter_dates.html')
+
+def add_semester(request):
+    if request.method == 'POST':
+        semname=request.POST['semname']
+        startdate=request.POST['start_date']
+        enddate=request.POST['end_date']
+    
+    if startdate < enddate:
+        semester = SemesterDates(name=semname, startDate=startdate, endDate=enddate)
+        semester.save()
+        messages.success(request, 'Semester added successfully.')
+        return render(request, 'enter_dates.html')
+    else:
+        messages.error(request, 'Enter a valid dates.')
+        return redirect('enter_dates')
+    

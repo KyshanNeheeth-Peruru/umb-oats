@@ -1,0 +1,35 @@
+{% extends 'base_bootstrapped.html' %}
+
+{% block title %}Enter Dates{% endblock %}
+
+{% block content %}
+        <div class="d-flex justify-content-between sticky-top flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Enter Dates</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+            </div>
+        </div>
+
+        <form method="POST" action="{% url 'add_semester' %}">
+            {% csrf_token %}
+            <label for="name"> Sem Name:</label>
+            <input type="text" id="semname" name="semname" required>
+        <br>
+            <label for="start_date">Start date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+        <br>
+            <label for="end_date">End date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+        <br>
+            <button type="submit">Add dates for the semester</button>
+          </form>
+
+        <div class="mb-3 fw-normal">
+            {% for msg in messages%}
+                <p>{{msg}}</p>
+            {% endfor %}
+        </div>
+          
+
+        
+
+{% endblock %}
