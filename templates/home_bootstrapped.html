@@ -1,4 +1,4 @@
-{% extends 'base_bootstrapped.html' %}
+{% extends 'base2_bootstrapped.html' %}
 
 {% block title %}Home{% endblock %}
 
@@ -14,7 +14,7 @@
                 <div class="sticky-top">
                 <h2> Today's student sessions: </h2>
                 {% for session in user.student.booked_slots.all %}
-                    {% if False %} {# session.date == today #}
+                    {% if session.date == today %}
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{session.tutor}} || {{ session.semester }}</h5>
