@@ -60,3 +60,10 @@ main {
 .scrollarea {
   overflow-y: auto;
 }
+.ice-blue-bg {
+  background-color: #d4efff;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+

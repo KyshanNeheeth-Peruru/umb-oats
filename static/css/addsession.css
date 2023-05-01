@@ -199,3 +199,9 @@
     right: -304.33px;
     bottom: -157.15px;
   }
+  .ice-blue-bg {
+    background-color: #d4efff;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}

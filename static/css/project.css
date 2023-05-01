@@ -94,3 +94,9 @@ a.article-title:hover {
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+.ice-blue-bg {
+  background-color: #d4efff;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
