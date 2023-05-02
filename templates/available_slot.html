@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 {% if ns %}
-<!-- <div class="card border-secondary"> -->
+<!-- <div class="card border-white"> -->
     <div class="card-body">
         <form method="GET" id="filter-form">
             <div class="row">
@@ -14,7 +14,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 d-flex align-items-center">
                                 <label for="course-select">Select Course:</label>
                                 <div class="ml-auto">
-                                    <i class="fas fa-award fa-2x"></i>
+                                    <i class="fas fa-book" style="font-size: 20px;"></i>
                                 </div>
                             </div>
                             <select  name="course" id="course-select" class="form-control">
@@ -32,7 +32,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 d-flex align-items-center">
                             <label for="tutor-select">Select Tutor:</label>
                             <div class="ml-auto">
-                                <i class="fas fa-award fa-2x"></i>
+                                <i class="fas fa-user" style="font-size: 20px;"></i>
                             </div>
                         </div>
                             <select name="tutor" id="tutor-select" class="form-control">
@@ -46,10 +46,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card border-left-primary shadow">  
+                        <div class="card-body">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 d-flex align-items-center">
+                                <label for="date-select" class="mr-5 mb-2">Choose a date:</label>
+                                <i class="fas fa-calendar" style="font-size: 20px;"></i>
+                            </div>
+                            <input type="date" name="date" id="date-select" class="form-control">
+                        </div>
+                            
+                        </div>
+                    
+                </div>
                 <!-- <div class="col-xl-3 col-md-6 mb-2">
                     <input type="submit" class="btn btn-primary" value="Filter">
                 </div> -->
-                <div class="col-xl-3 col-md-6 mb-2">
+                <div class="col-xl-3 col-md-6 mb-1">
                         <div class="card-body">
                             <input type="submit" class="btn btn-primary btn-block" value="Filter">
                         </div>
@@ -59,34 +72,35 @@
         </form>
     </div>
 <!-- </div> -->
-<div style="height: 470px; overflow-y: scroll;">
-<div class="card border-dark">    
-    <div class="card shadow h-50 py-2 overflow-au bg-white">
+<div style="height: 450px; overflow-y: scroll;">
+<div class="col-2 col-md-12 mb-4">
+<!-- <div style="height: 470px; overflow-y: scroll;"> -->
+<div class="card border-left-primary shadow h-400">    
+    <div class="card shadow h-50 py-2 overflow-au bg-light">
     <div class="row">
         {% for session in slots %}
             {% if session.status == 'A' %}
                 {% if not request.GET.course or session.course.c_name == request.GET.course %}
                 {% if not request.GET.tutor or session.tutor.user.username == request.GET.tutor %}
-                <div class="col-xl-3 col-md-6 mb-2">
-                <div class="col-md-1 mb-2">
-                    <div class="card border-left-primary-3" style="width: 16rem;">
+                <div class="col-xl-3 col-md-1 mb-2">
+                <div class="col-md-1 mb-4">
+                    <div class="card border-secondary" style="width: 15rem;">
                     <!-- <div class="card" > -->
-                        <span class="border border-dark">
-                        <div class="card-body bg-primary">
-                            <h4 class="card-title text-white">{{session.tutor}}</h4>
+                        <!-- <span class="border border-dark "> -->
+                        <div class="card-body">
+                            <h5 class="text-uppercase card-subtitle text-primary">{{session.tutor}}</h5>
                             <hr>
-                            
-                            <h5 class="card-title text-white">{{session.semester}}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-white">{{ session.date }}</h6>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-white">Timing and location : {{ session.timeblock }}</h6>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-white">Course : {{ session.course }}</h6>
+                            <h6 class="card-subtitle mb-2">{{session.semester}}</h6>
+                            <h6 class="card-subtitle mb-2 text-secondary">{{ session.date }}</h6>
+                            <h6 class="card-subtitle mb-2 text-body-secondary ">Timing and location : {{ session.timeblock }}</h6>
+                            <h6 class="card-subtitle mb-2 text-body-secondary ">Course : {{ session.course }}</h6>
                             <!-- <a href="{% url 'booking_page' session.id %}" class="card-link btn btn-primary ">Book</a> -->
                             <hr>
                             <div class="d-flex justify-content-center">
                                 <a href="{% url 'booking_page' session.id %}" class="card-link btn btn-success">Book</a>
                               </div>
                         </div>
-                    </span>
+                    <!-- </span> -->
                     </div>
                     </div>
                 </div>
@@ -97,9 +111,36 @@
     </div>
 </div>
 </div>
+</div>
+</div>
 {% else %}
     <p>Please Contact Admin</p>
 {% endif %}
 
 {% endblock content %}
+<!-- <style> -->
+<!-- /* .ice-blue-bg {
+    /* background-color: #0e0120; */
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* display: inline-block; */
+/* } */ -->
+<!-- </style> -->
 
+<!-- <style> -->
+<!-- .card-body {
+    padding-top: 0;
+  }
+</style> --> 
+
+<!-- <style> -->
+<!-- /* .card-subtitle {
+    margin-bottom: 0;
+} -->
+<!-- </style> */ -->
+
+<style>
+.card-subtitle-before {
+    content: "» ";
+  }
+</style>

@@ -4583,3 +4583,10 @@ readers do not read off random characters that represent icons */
   overflow: visible;
   position: static;
   width: auto; }
+
+.ice-blue-bg {
+    background-color: #360d6f;
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* display: inline-block; */
+}

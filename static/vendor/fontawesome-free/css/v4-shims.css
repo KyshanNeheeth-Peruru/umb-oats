@@ -2170,3 +2170,10 @@
 
 .fa.fa-cab:before {
   content: "\f1ba"; }
+
+.ice-blue-bg {
+    background-color: #360d6f;
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* display: inline-block; */
+}

@@ -4617,3 +4617,10 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+
+.ice-blue-bg {
+    background-color: #360d6f;
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* display: inline-block; */
+}

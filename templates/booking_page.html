@@ -3,7 +3,12 @@
     <h1 class="h3 mb-0 text-gray-900">Book Slot</h1>
 {% endblock %}
 {% block content %}
-
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
         <form method="POST">
             {% csrf_token %}
             <p><strong>Tutor:</strong> {{ slot.tutor }}</p>
@@ -23,10 +28,16 @@
                 <button type="submit"  class="btn btn-primary" onclick="return confirm('Are you sure you want to assign this slot?')">Assign Student</button>
             {% else %}
                 <input type="hidden" name="student" value="{{ user.student.id }}">
-                <button type="submit"  class="btn btn-primary" onclick="return confirm('Are you sure you want to book this slot?')">Book</button>
+                <button type="submit"  class="btn btn-success" onclick="return confirm('Are you sure you want to book this slot?')">Book</button>
             {% endif %}
             {% endif %}
 
         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -369,3 +369,10 @@ svg:not(:root).svg-inline--fa {
 
 .fad.fa-inverse {
   color: #fff; }
+
+.ice-blue-bg {
+    background-color: #360d6f;
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* display: inline-block; */
+}
